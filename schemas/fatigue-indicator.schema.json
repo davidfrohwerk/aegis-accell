@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aegis-accell.dev/schemas/fatigue-indicator.schema.json",
+  "title": "FatigueIndicator",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "https://aegis-accell.dev/schemas/common.schema.json#/$defs/entityBase"
+    },
+    {
+      "type": "object",
+      "required": ["researchSessionId", "text", "status", "severity", "confidence"],
+      "properties": {
+        "researchSessionId": {
+          "$ref": "https://aegis-accell.dev/schemas/common.schema.json#/$defs/entityId"
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "type": "string",
+          "enum": ["observed", "monitoring", "resolved", "accepted"]
+        },
+        "severity": {
+          "$ref": "https://aegis-accell.dev/schemas/common.schema.json#/$defs/severity"
+        },
+        "confidence": {
+          "$ref": "https://aegis-accell.dev/schemas/common.schema.json#/$defs/confidence"
+        },
+        "observedAt": {
+          "$ref": "https://aegis-accell.dev/schemas/common.schema.json#/$defs/isoTimestamp"
+        },
+        "failureMarkerIds": {
+          "$ref": "https://aegis-accell.dev/schemas/common.schema.json#/$defs/entityIdList"
+        }
+      }
+    }
+  ],
+  "unevaluatedProperties": false
+}

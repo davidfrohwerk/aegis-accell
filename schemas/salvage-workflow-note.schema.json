@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aegis-accell.dev/schemas/salvage-workflow-note.schema.json",
+  "title": "SalvageWorkflowNote",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "https://aegis-accell.dev/schemas/common.schema.json#/$defs/entityBase"
+    },
+    {
+      "type": "object",
+      "required": ["researchSessionId", "title", "text", "status", "confidence"],
+      "properties": {
+        "researchSessionId": {
+          "$ref": "https://aegis-accell.dev/schemas/common.schema.json#/$defs/entityId"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "type": "string",
+          "enum": ["candidate", "in_progress", "applied", "discarded"]
+        },
+        "confidence": {
+          "$ref": "https://aegis-accell.dev/schemas/common.schema.json#/$defs/confidence"
+        },
+        "nextStep": {
+          "type": "string"
+        },
+        "claimIds": {
+          "$ref": "https://aegis-accell.dev/schemas/common.schema.json#/$defs/entityIdList"
+        },
+        "contradictionIds": {
+          "$ref": "https://aegis-accell.dev/schemas/common.schema.json#/$defs/entityIdList"
+        },
+        "failureMarkerIds": {
+          "$ref": "https://aegis-accell.dev/schemas/common.schema.json#/$defs/entityIdList"
+        }
+      }
+    }
+  ],
+  "unevaluatedProperties": false
+}

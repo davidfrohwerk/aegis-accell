@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aegis-accell.dev/schemas/unlearning-prompt.schema.json",
+  "title": "UnlearningPrompt",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "https://aegis-accell.dev/schemas/common.schema.json#/$defs/entityBase"
+    },
+    {
+      "type": "object",
+      "required": ["researchSessionId", "text", "status"],
+      "properties": {
+        "researchSessionId": {
+          "$ref": "https://aegis-accell.dev/schemas/common.schema.json#/$defs/entityId"
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "type": "string",
+          "enum": ["pending", "in_progress", "completed", "dismissed"]
+        },
+        "claimIds": {
+          "$ref": "https://aegis-accell.dev/schemas/common.schema.json#/$defs/entityIdList"
+        },
+        "assumptionIds": {
+          "$ref": "https://aegis-accell.dev/schemas/common.schema.json#/$defs/entityIdList"
+        },
+        "contradictionIds": {
+          "$ref": "https://aegis-accell.dev/schemas/common.schema.json#/$defs/entityIdList"
+        },
+        "salvageWorkflowNoteIds": {
+          "$ref": "https://aegis-accell.dev/schemas/common.schema.json#/$defs/entityIdList"
+        }
+      }
+    }
+  ],
+  "unevaluatedProperties": false
+}

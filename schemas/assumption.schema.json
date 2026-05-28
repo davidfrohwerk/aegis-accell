@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aegis-accell.dev/schemas/assumption.schema.json",
+  "title": "Assumption",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "https://aegis-accell.dev/schemas/common.schema.json#/$defs/entityBase"
+    },
+    {
+      "type": "object",
+      "required": ["researchSessionId", "text", "status", "confidence", "riskLevel"],
+      "properties": {
+        "researchSessionId": {
+          "$ref": "https://aegis-accell.dev/schemas/common.schema.json#/$defs/entityId"
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "type": "string",
+          "enum": ["untested", "validated", "invalidated", "deprecated"]
+        },
+        "confidence": {
+          "$ref": "https://aegis-accell.dev/schemas/common.schema.json#/$defs/confidence"
+        },
+        "riskLevel": {
+          "$ref": "https://aegis-accell.dev/schemas/common.schema.json#/$defs/riskLevel"
+        },
+        "uncertaintyMarkerIds": {
+          "$ref": "https://aegis-accell.dev/schemas/common.schema.json#/$defs/entityIdList"
+        },
+        "provenanceItemIds": {
+          "$ref": "https://aegis-accell.dev/schemas/common.schema.json#/$defs/entityIdList"
+        },
+        "contradictionIds": {
+          "$ref": "https://aegis-accell.dev/schemas/common.schema.json#/$defs/entityIdList"
+        }
+      }
+    }
+  ],
+  "unevaluatedProperties": false
+}

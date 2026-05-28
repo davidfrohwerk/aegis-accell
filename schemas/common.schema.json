@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aegis-accell.dev/schemas/common.schema.json",
+  "title": "Aegis Accell Common Schema Definitions",
+  "$defs": {
+    "entityId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "isoTimestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "createdBy": {
+      "type": "string",
+      "minLength": 1
+    },
+    "confidence": {
+      "type": "string",
+      "enum": ["unknown", "low", "medium", "high"]
+    },
+    "severity": {
+      "type": "string",
+      "enum": ["low", "medium", "high", "critical"]
+    },
+    "riskLevel": {
+      "type": "string",
+      "enum": ["low", "medium", "high"]
+    },
+    "entityType": {
+      "type": "string",
+      "enum": [
+        "ResearchSession",
+        "Claim",
+        "Assumption",
+        "UncertaintyMarker",
+        "ProvenanceItem",
+        "Contradiction",
+        "FailureMarker",
+        "FatigueIndicator",
+        "RedTeamCheckpoint",
+        "UnlearningPrompt",
+        "SalvageWorkflowNote"
+      ]
+    },
+    "entityIdList": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/entityId"
+      },
+      "uniqueItems": true
+    },
+    "relatedEntityLink": {
+      "type": "object",
+      "required": ["entityType", "id"],
+      "properties": {
+        "entityType": {
+          "$ref": "#/$defs/entityType"
+        },
+        "id": {
+          "$ref": "#/$defs/entityId"
+        },
+        "label": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "relatedEntityLinks": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/relatedEntityLink"
+      },
+      "uniqueItems": true
+    },
+    "entityBase": {
+      "type": "object",
+      "required": ["id", "createdAt", "updatedAt", "createdBy"],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/entityId"
+        },
+        "createdAt": {
+          "$ref": "#/$defs/isoTimestamp"
+        },
+        "updatedAt": {
+          "$ref": "#/$defs/isoTimestamp"
+        },
+        "createdBy": {
+          "$ref": "#/$defs/createdBy"
+        },
+        "relatedEntities": {
+          "$ref": "#/$defs/relatedEntityLinks"
+        }
+      }
+    }
+  }
+}

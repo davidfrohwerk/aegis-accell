@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aegis-accell.dev/schemas/provenance-item.schema.json",
+  "title": "ProvenanceItem",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "https://aegis-accell.dev/schemas/common.schema.json#/$defs/entityBase"
+    },
+    {
+      "type": "object",
+      "required": ["researchSessionId", "title", "sourceType", "status", "confidence"],
+      "properties": {
+        "researchSessionId": {
+          "$ref": "https://aegis-accell.dev/schemas/common.schema.json#/$defs/entityId"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "text": {
+          "type": "string"
+        },
+        "sourceType": {
+          "type": "string",
+          "enum": ["article", "paper", "dataset", "interview", "internal", "observation", "other"]
+        },
+        "sourceUrl": {
+          "type": "string",
+          "format": "uri"
+        },
+        "retrievedAt": {
+          "$ref": "https://aegis-accell.dev/schemas/common.schema.json#/$defs/isoTimestamp"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["active", "superseded", "disputed", "retracted"]
+        },
+        "confidence": {
+          "$ref": "https://aegis-accell.dev/schemas/common.schema.json#/$defs/confidence"
+        },
+        "claimIds": {
+          "$ref": "https://aegis-accell.dev/schemas/common.schema.json#/$defs/entityIdList"
+        },
+        "assumptionIds": {
+          "$ref": "https://aegis-accell.dev/schemas/common.schema.json#/$defs/entityIdList"
+        },
+        "contradictionIds": {
+          "$ref": "https://aegis-accell.dev/schemas/common.schema.json#/$defs/entityIdList"
+        }
+      }
+    }
+  ],
+  "unevaluatedProperties": false
+}
